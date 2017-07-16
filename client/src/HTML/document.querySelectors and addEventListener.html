@@ -1,0 +1,58 @@
+<div id="foo">
+  <div id="bar">New</div>
+</div>
+<div class="test"></div>
+
+<div class="user-panel main">
+  <input name="login" />
+</div>
+<button id="btnShowNameOnLabel">Show Name On Label</button></br>
+<button id="btnClearLabel">Clear Label</button>
+<p>
+  <label id="reflectLoginName">Label Placeholder</label>
+</p>
+
+<p><label class="LabelClass">First Label Message</label></p>
+<p><label class="LabelClass">Second Label Message</label></p>
+
+
+<script>
+  window.onload = prepare;
+
+  function prepare() {
+    //alert('its loaded');
+    
+  }
+  let labelClasses = document.querySelectorAll('.LabelClass');
+  
+  labelClasses.forEach(function(element) {
+    element.style.display='none';
+  }, this);
+
+  let elFoo = document.querySelector('#foo'); //query by id
+  elFoo.innerHTML = Date();
+
+  let elTest = document.querySelector(".test"); //query by class name
+  //let elTest = document.getElementsByClassName("test");
+  elTest.innerHTML = 'this is elTest';
+
+  let elLogin = document.querySelector("div.user-panel.main input[name='login']");
+  let elReflectLoginName = document.querySelector("#reflectLoginName");
+
+  let btnShowNameOnLabel = document.getElementById("btnShowNameOnLabel");
+  btnShowNameOnLabel.addEventListener('click', (event) => {
+    if (!(elLogin.value === '')) {
+      elReflectLoginName.innerHTML = elLogin.value;
+    }
+  });
+
+  let btnClearLabel = document.getElementById("btnClearLabel");
+  btnClearLabel.addEventListener('click', (event) => {
+    elReflectLoginName.innerHTML = 'Label Placeholder';
+    elLogin.value = '';
+  });
+
+  let elBar = elFoo.querySelector('#bar');
+  //alert(elBar.value);
+
+</script>

@@ -22,12 +22,10 @@ namespace api.Controllers
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        //public IEnumerable<string> Get()
+        public IEnumerable<Author> Get()
         {
-            var temp = repository.Authors;
-            //return new string[] {temp.ToString()};
-
-            return new string[] { "value1", "value2" };
+            return repository.Authors;
         }
 
         // GET api/values/5
