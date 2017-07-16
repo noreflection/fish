@@ -18,6 +18,7 @@ class AuthorsTable extends React.Component {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : this.renderAuthorsTable();
+
         return <div>{contents}</div>;
     }
 
@@ -26,19 +27,19 @@ class AuthorsTable extends React.Component {
             <thead>
                 <tr>
                     <th>Author's Names</th>
-
                 </tr>
             </thead>
             <tbody>
-            {this.state.authors.map(author =>
-                <tr key={ author.id }>
-                    <td>{ author.authorName }</td>
-                </tr>
-            )}
+                {this.state.authors.map(author =>
+                    <tr key={author.id}>
+                        <td>{author.authorName}</td>
+                    </tr>
+                )}
             </tbody>
         </table>;
     }
 }
 export default AuthorsTable;
+
 render(<AuthorsTable />, document.getElementById('root'));
 

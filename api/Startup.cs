@@ -38,7 +38,7 @@ namespace api
             services.AddCors();
 
             // Database
-            var connection = @"Server=DESKTOP-P8NR8S7\SQLEXPRESS;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
+            var connection = @"Server=DESKTOP-P8NR8S7\SQLEXPRESS;Database=ApplicationDatabase;Trusted_Connection=True;";
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
             services.AddTransient<IAuthorRepository, AuthorRepository>();
         }
