@@ -17,6 +17,5 @@ namespace domain.Models
         public string AuthorName { get; set; }
         public int BooksCount { get; set; }
 
-        public ICollection<Book> Books { get; set; }
     }
 }

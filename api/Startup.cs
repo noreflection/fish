@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+
+using domain.Models;
+using domain.Models.Abstract;
+using domain.Models.Concrete;
 
 namespace api
 {
@@ -29,6 +34,11 @@ namespace api
         {
             // Add framework services.
             services.AddMvc();
+
+            // Database
+            var connection = @"Server=DESKTOP-P8NR8S7\SQLEXPRESS;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
+            services.AddTransient<IAuthorRepository, AuthorRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
