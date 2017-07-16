@@ -16,5 +16,23 @@ namespace domain.Models.Concrete
         }
 
         public IEnumerable<Author> Authors => context.Authors;
+
+        public void SaveAuthor(Author author)
+        {
+            var temp=author;
+            if (author.AuthorId == 0)
+            {
+                context.Authors.Add(author);
+            }
+            else
+            {
+                Author dbEntry = context.Authors.FirstOrDefault(a => a.AuthorId == author.AuthorId);
+                if(dbEntry!=null){
+                    dbEntry.AuthorName=author.AuthorName;
+                    //dbEntry.BooksCount=author.BooksCount;
+                }
+            }
+            context.SaveChanges();
+        }
     }
 }

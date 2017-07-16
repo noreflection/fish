@@ -19,9 +19,16 @@ class AuthorsTable extends React.Component {
             ? <p><em>Loading...</em></p>
             : this.renderAuthorsTable();
 
-        return <div>{contents}</div>;
+        return (
+            <div>
+                <button id='get-button'>GET</button>
+                <button id='post-button'>POST</button>
+                <p>{contents}</p>
+            </div>);
     }
+    sendPost() {
 
+    }
     renderAuthorsTable() {
         return <table className='table'>
             <thead>

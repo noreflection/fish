@@ -35,7 +35,14 @@ namespace api
             // Add framework services.
             services.AddMvc();
 
-            services.AddCors();
+            //services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                builder => builder.WithOrigins("http://localhost:3000")
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+            });
 
             // Database
             var connection = @"Server=DESKTOP-P8NR8S7\SQLEXPRESS;Database=ApplicationDatabase;Trusted_Connection=True;";
@@ -47,8 +54,10 @@ namespace api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             // Shows UseCors with CorsPolicyBuilder.
-            app.UseCors(builder =>
-               builder.WithOrigins("http://localhost:3000"));
+            // app.UseCors(builder =>
+            //    builder.WithOrigins("http://localhost:3000").AllowAnyHeader());
+            // app.UseCors(builder =>
+            //    builder.WithOrigins("http://localhost:3000").AllowAnyHeader());
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
