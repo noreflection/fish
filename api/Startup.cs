@@ -35,6 +35,8 @@ namespace api
             // Add framework services.
             services.AddMvc();
 
+            services.AddCors();
+
             // Database
             var connection = @"Server=DESKTOP-P8NR8S7\SQLEXPRESS;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
@@ -44,6 +46,10 @@ namespace api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            // Shows UseCors with CorsPolicyBuilder.
+            app.UseCors(builder =>
+               builder.WithOrigins("http://localhost:3000"));
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
